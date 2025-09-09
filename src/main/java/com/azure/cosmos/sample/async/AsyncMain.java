@@ -434,9 +434,9 @@ class MyFireAndForgetTask implements Runnable {
         try {
 
             pagedFluxResponse.byPage(preferredPageSize).flatMap(fluxResponse -> {
-                // logger.info("Got a page of query result with " +
-                //         fluxResponse.getResults().size() + " items(s)"
-                //         + " and request charge of " + fluxResponse.getRequestCharge());
+                 logger.info("Got a page of query result with " +
+                         fluxResponse.getResults().size() + " items(s)"
+                         + " and request charge of " + fluxResponse.getRequestCharge());
 
                         fluxResponse.getResults()
                         .stream();
