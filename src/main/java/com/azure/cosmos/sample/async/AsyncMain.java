@@ -111,7 +111,7 @@ public class AsyncMain {
         ExecutorService executor = Executors.newCachedThreadPool();
 
         // Submit the task for execution without waiting for its completion
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 4; i++) {
             executor.submit(new MyFireAndForgetTask(client, database, container));
         }
 
