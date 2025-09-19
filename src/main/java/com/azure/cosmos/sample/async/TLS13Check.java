@@ -9,17 +9,12 @@ import java.util.List;
 public class TLS13Check {
 
     public static void main(String[] args) {
-//        boolean openSslSupport = OpenSsl.isAvailable();
-//        System.out.println("OpenSSL support " + (openSslSupport ? "enabled" : "disabled"));
-//        boolean isLinux = System.getProperty("os.name", "").toLowerCase().contains("linux");
-//        System.out.println("Detected OS: " + System.getProperty("os.name"));
-
         // Detect if the Maven dependency tree shows an override ("(version managed from X)")
-        // Approach: either read a provided dependency tree file (first arg) or invoke mvn dependency:tree filtered to the artifact.
+        // invoke mvn dependency:tree filtered to the artifact.
         String managedFromVersion = null;    // the original version before management override
         try {
             List<String> lines = new ArrayList<>();
-            // Invoke mvn to get a minimal tree for the artifact (quiet but keep the needed line)
+            // Invoke mvn to get a minimal tree for the artifact
             Process process = new ProcessBuilder("mvn", "-Dverbose", "dependency:tree", "-Dincludes=io.netty:netty-tcnative-boringssl-static").redirectErrorStream(true).start();
             try (BufferedReader r = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                 String l;
